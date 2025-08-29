@@ -1,0 +1,141 @@
+/*
+<p style="color:red">->タグの中に書き込み
+もしくは<style>color:red</style>->styleタグを作って書く
+
+セレクタ{
+      プロパティ：値
+      ｝どこの・何を・どのように　変えるのか
+セレクタはタグ(ｐなど) or id = "id名" 
+もしくはclass名で指定する
+<div class = "クラス名">
+
+(css).クラス名={ プロパティ}
+セレクタは　＃headline,p(タグ）＝｛｝とかでもいける
+
+
+*/
+/*
+プロパティ名
+color : 文字の色
+font-size : 文字の大きさ
+font-weight : 太さ（bold, normal, 数値）
+text-align : 横方向の揃え方（left, center, right）
+line-height : 行の高さ
+text-decoration : 下線や取り消し線（underline, line-through
+
+width / height : 幅・高さ
+padding : 内側の余白
+margin : 外側の余白
+border : 枠線
+border-radius : 角を丸める
+
+display : 表示方法（block, inline, flex, grid）
+flex 系 : justify-content, align-items, flex-direction 横並び　縦並びとかを簡単に指定できる
+position : 位置指定（static, relative, absolute, fixed, sticky）
+top, left, right, bottom : position と一緒に使う
+
+background-color : 背景色
+background-image : 背景画像
+background-size : 画像の大きさ cover, contain,~%
+opacity : 透明度（0.0〜1.0
+
+box-shadow : 影をつける
+text-shadow : 文字に影をつける
+transition : アニメーション的な変化（transition: all 0.3s;）
+cursor : マウスカーソルの形（pointer でリンク風になる
+*/
+
+/*
+セレクタ:追加要素
+p:hoverとか
+:hover → マウスを乗せたとき
+:active → クリックしてる間
+:focus → フォーカスされたとき（入力欄をクリックしたときなど）
+:visited → リンクをクリック済みの状態
+:checked → チェックボックスやラジオボタンがONのとき
+:disabled → 無効化されている要素
+:first-child / :last-child → 最初/最後の子要素
+:nth-child(n) → n番目の子要素（nth-child(2n) とかで偶数指定もできる
+::before → 要素の前にコンテンツを挿入
+::after → 要素の後にコンテンツを挿入
+::first-letter → 最初の文字だけ装飾
+::first-line → 最初の行だけ装飾
+@keyframes → アニメーション定義
+
+@media → 条件ごとのスタイル指定（レスポンシブ対応など）
+
+@import → CSS ファイルの読み込み
+
+#root → アプリ全体の入れ物（index.html にある）
+background-position: top left 100%;左上から100%
+
+*/
+/*
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+*/
+  
+#root{
+  text-align: center;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* 横方向の中央寄せ */
+  justify-content: center; /* 縦方向の中央寄せ */
+  min-height: 100vh;    /* 画面いっぱい */
+}
+
+h1{
+  font-size: 50px;
+  color:black;
+}
+/*
+.app-background{
+  min-height:100vh;/*画面全体の高さ
+  width:300%;/*横幅の割合
+  background-size:cover;/*cover,contaionは背景画像
+  background-color:rgb(163, 225, 252);
+}
+*/
+body{
+  background-color:rgb(163, 225, 252);
+}
+/*
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+*/
