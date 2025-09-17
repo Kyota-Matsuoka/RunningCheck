@@ -43,6 +43,11 @@ box-shadow : 影をつける
 text-shadow : 文字に影をつける
 transition : アニメーション的な変化（transition: all 0.3s;）
 cursor : マウスカーソルの形（pointer でリンク風になる
+
+
+.react-calendar 幅やフォントサイズを指定 → カレンダー全体のバランス
+
+.react-calendar__tile  高さや line-height を指定 → 日付セルの大きさを調整
 */
 
 /*
@@ -101,6 +106,62 @@ h1{
 */
 body{
   background-color:rgb(163, 225, 252);
+}
+
+p{
+  font-size: 20px;
+  color:black;
+}
+
+.running-calendar{
+  font-size: 20px;
+  color:black;
+}
+
+
+.react-calendar__month-view__weekdays {/* 曜日行 */
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.react-calendar__navigation{/*年月と左右の矢印を表示*/
+  background-color:rgb(0, 0, 0);
+}
+
+.RunningCalendar{/*className*/
+  /*background-color:rgb(0, 0, 0);*/
+  /*position: absolute; 位置を指定*/
+  width:300px;
+  height:200px;
+  position:absolute;/*位置を指定(左上)*/
+  top: 0px;          /* 上からの余白 */
+  left: 0px;         /* 左からの余白 */
+  /*
+  .react-calendar{
+    width:300px;
+    height:200px;
+  }
+  */
+
+  .react-calendar__tile{/*日付セルの大きさを調整*/
+    height:40px;
+    /*font-size: 20px;
+    /*color:black;*/
+  }
+  
+  /* 走った日だけ色を変える */
+  .react-calendar__tile.ranCheckDate {
+    background-color: lightgreen; /* 緑にする例 */
+    color: black;
+    font-weight: bold; /* 強調したい場合 */
+  }
+  .react-calendar__tile.notRanCheckDate {
+    background-color: lightblue; /* 緑にする例 */
+    color: black;
+    font-weight: bold; /* 強調したい場合 */
+  }
 }
 /*
 .logo {
