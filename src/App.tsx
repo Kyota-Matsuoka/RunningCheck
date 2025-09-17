@@ -63,24 +63,33 @@ width / height : サイズ
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+
+
+ButtonやCheckSheetなどを呼びだしているこのAPPが親コンポーネント
 */
 import './App.css'
-import Button from './Button'
+import Button, { CheckSheet } from './Button'
+import RunningCalendar from './RunningCalender'
 //<div>は箱     クラス名＝"クラス名"でcssにあるそのクラスの書式設定にする
 function App() {
   
   return(
     //要素を複数使うときは<></>で囲む
+    //ButtonのButtonNameという引数にButtonを代入
     <>
   
-        <div title = "TitleA">
-          <h1 title = "Take Bath">Take s Bath</h1>
-          <Button />
-        </div>
-      
         
-    
+      <h1 title = "RunningCheck">RunningCheck</h1>
+
+      <div title = "CheckSheet">       
+          <CheckSheet /> 
+      </div>
+      <div className = "RunningCalendar">
+          <RunningCalendar className="running-calendar"/>
+      </div>
+
     </>
+    //Reactで作ったタグはTitle使えない->divタグで囲って使う
     //hは見出し
   )
   /*　もともと入っていたコード
