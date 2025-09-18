@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react';
 //import { CheckSheet } from './Button'
 
 import type { RanDate } from "./RunningData";//型をimportする場合はtypeをつける必要がある
-import {loadDates,addDate, removeDate, isRan, getDates } from './RunningData';
+import {loadDates, getDates,reSetDates } from './RunningData';
 //レンダーとはコンポーネントの関数が実行されて、JSX（見た目の設計図）から実際の DOM が作られ、画面に反映されること
 /*
 1.コンポーネント関数（例：RunningCalendar）が呼ばれる
@@ -41,19 +41,11 @@ function RunningCalendar({className}:RunningCalendarProps) {
   });
   
   useEffect(() => {//useEffectはコンポーネントがレンダーされた後に実行される処理
-  /*
-  第1引数の関数は「副作用（サイドエフェクト）」を実行する場所。
-  第2引数の配列 [依存する値] が変わるたびに再実行される。dates
-  依存配列が空 [] なら、初回レンダー時だけ実行される。
-  
-  //日付けが変わるたびに更新される　ブラウザを閉じても消えない
-  // dates の中身が変わるたびに localStorage に保存
-  localStorage.setItem("runningDates", JSON.stringify(dates));
-  }, [dates]);
   */
+ 
   const [dates, setDates] = useState<RanDate[]>([]);
   useEffect(() => {
-    loadDates(); // 保存済みデータを読み込む
+    loadDates(); // 保存済みデータを読み込む setDatesはdatesのsetなので、datesに値が入る？
     setDates(getDates());//getDateはRanDate(booleanとDate)を返すため一致しない
     //日にちだけ取得->dates配列に代入
     //setDates(getDates().map(d => d.date));
@@ -62,6 +54,7 @@ function RunningCalendar({className}:RunningCalendarProps) {
 
   const handleClickDay = (date: Date) => {
     //console.log("HEllo");
+    /*
     const dateString = date.toDateString();//日付を文字列に変換 
     if (dates.some(d => d.date.toDateString() === dateString)) {
       // すでに走った日なら削除
@@ -70,7 +63,9 @@ function RunningCalendar({className}:RunningCalendarProps) {
       // 走った日記録追加
       //setDates([...dates, date]);
     }
+      */
   };
+
 
 
 
@@ -83,7 +78,7 @@ function RunningCalendar({className}:RunningCalendarProps) {
       prev2Label={null} // ← 「≪」ボタンを非表示（年単位ジャンプしたくないなら）
       next2Label={null}
     
-      onClickDay={handleClickDay}//OnClickDayはその日をクリックしたときに呼び出される ->日付けをクリックしたらポップアップを表示する
+      //onClickDay={handleClickDay}//OnClickDayはその日をクリックしたときに呼び出される ->日付けをクリックしたらポップアップを表示する
       
       //tileClassNameはカレンダーの一日にクラス名をつけるプロパティ
       // => {  }にすると複数の処理を行える
@@ -91,6 +86,7 @@ function RunningCalendar({className}:RunningCalendarProps) {
         //dates.some(d => d.date.toDateString() === date.toDateString())//datesは走った日の配列　Array.prototype.some() は 配列の中に条件を満たす要素が1つでもあるか調べるメソッド
         
         // dates は RanDate[] 型
+        //const ranDate = getDates(); 
         const ranDate = dates.find(d => d.date.toDateString() === date.toDateString());
 
         if (!ranDate) {
@@ -103,7 +99,7 @@ function RunningCalendar({className}:RunningCalendarProps) {
         return ranDate.ran
         ? `${className ?? ''} ranCheckDate`//checkをつけて、走った日にはranCheckdateというclassnameをつける
         : className ?? 'notRanCheckDate'// チェックしたけど、走っていない日にはnotRanCheckDateというclassName を適用  
-
+        reSetDates();
       }}
 
 

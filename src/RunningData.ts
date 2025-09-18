@@ -8,6 +8,7 @@ export type RanDate = {//booleanとdate型の配列
     date:Date;
     ran : boolean;
 }
+
 //let ranDates: RanDate[] = []; // 走った日付の配列　Date型
 
 
@@ -15,15 +16,19 @@ export type RanDate = {//booleanとdate型の配列
 const [ranDates, setDates] = useState<RanDate[]>([]);
 //読み込み->変更->保存(localStrageに)
 // 保存されている日付を読み込む
-export function loadDates() {
-    const saved = localStorage.getItem("runningDates");
-    ranDates = saved
+export function loadDates(){//setDates: React.Dispatch<React.SetStateAction<RanDate[]>>) {
+    const saved = localStorage.getItem("runningDates");//ローカルに保存していたものを取り出す
+    //ranDates = saved
+    const loaded = saved
      ? JSON.parse(saved).map((d: {date :string; ran:boolean}) => ({
         date:new Date(d.date),
         ran:d.ran,
     }))
     : [];
-    saveDates(ranDates);
+    //ranDatesにloadedが入る,ただし非同期なのでuseeffectする必要がある
+    setDates(loaded);//useStateで宣言されたsetDatesでないと意味がない
+    saveDates(loaded);
+    //saveDates(ranDates);
 }
 
 // localStorageに保存
@@ -37,7 +42,7 @@ function saveDates(ranDates:RanDate[]) {
 useStateを使って再レンダ―するには、参照渡しではなくコピーする必要がある
 prop,setStateを直接変更すると、参照が変わらないため、再レンダ―されない
 */
-export function addDate(date: Date,ran:boolean,setDates: React.Dispatch<React.SetStateAction<RanDate[]>>) {//Date型のdate
+export function addDate(date: Date,ran:boolean){//,setDates: React.Dispatch<React.SetStateAction<RanDate[]>>) {//Date型のdate
   
   /*
   const dateString = date.toDateString();//string型に変換
@@ -58,7 +63,7 @@ export function addDate(date: Date,ran:boolean,setDates: React.Dispatch<React.Se
 //戻り値に「新しい配列」を返すと、それが dates の次の状態になる
 //..prevで新しい配列を作って、setDate({prev})で新しいオブジェクトを作成
 
-  setDates(prev => {
+  setDates(prev => {//prevにはranDatesが入っている
     const dateString = date.toDateString();
     const index = prev.findIndex(d => d.date.toDateString() === dateString);
 
@@ -89,8 +94,8 @@ export function addDate(date: Date,ran:boolean,setDates: React.Dispatch<React.Se
 export function removeDate(date: Date) {
   const dateString = date.toDateString();
   
-  ranDates = ranDates.filter(d => d.date.toDateString() !== dateString);//存在するなら削除
-  saveDates(ranDates);
+  //ranDates = ranDates.filter(d => d.date.toDateString() !== dateString);//存在するなら削除
+  //saveDates(ranDates);
 }
 
 // チェックした日一覧を取得
@@ -105,4 +110,11 @@ export function isRan(date: Date): boolean {
   
   return item ? item.ran : false; //一致した日にちのran(boolean)を返す
   //return ranDates.some(d => d.toDateString() === dateString);
+}
+
+
+export function reSetDates(){//setDatesをもう一回する関数
+    const reRanDates = ranDates.map(d => ({ ...d }));//getDates();
+ 
+    setDates(reRanDates);//参照ではなく、新たに作成したオブジェクト
 }

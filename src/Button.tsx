@@ -82,12 +82,12 @@ functionでもtypeでも、前にexportをつけるとほかのファイルか�
 
 値を関数外で使いたい場合
 
-
+useEffectは描画後になにか処理したいときに使用する
 
 */
-import { useState,useEffect} from "react";
-import type { RanDate } from "./RunningData";
-import { loadDates,addDate, removeDate, isRan, getDates } from './RunningData'
+import { useState} from "react";
+//import type { RanDate } from "./RunningData";
+import { addDate} from './RunningData'
 
 
 type ButtonProps = {
@@ -101,19 +101,21 @@ type ButtonProps = {
 
 
 function CheckSheet() {
+  /*
     const [dates, setDates] = useState<RanDate[]>([]);
     
     useEffect(() => {
-        loadDates(); // 保存済みデータを読み込む
+        loadDates();//setDates); // 保存済みデータを読み込む
         setDates(getDates());//getDateはRanDate(booleanとDate)を返すため一致しない
           //日にちだけ取得->dates配列に代入
           //setDates(getDates().map(d => d.date));
     }, []);
-
+    */
+    /*
     useEffect(() => {
       console.log("dates updated:", dates);
     }, [dates]);
-
+    */
 
     // RunningDataファイルに保存されたデータの読み込み->setDatesを呼び出してdatesに代入
     //datesはuseStateで管理された配列
@@ -154,9 +156,9 @@ function CheckSheet() {
     const today = new Date();///今日の日付けを取得
     //if(RunningCheck === true){//datesにaddDatesする(引数にその日付けを代入する)
     
-    addDate(today,RunningCheck,setDates);//今日の日付けと走ったかどうかを追加する
+    addDate(today,RunningCheck);//,setDates);//今日の日付けと走ったかどうかを追加する
     
-    console.log("dates updated:Hello", dates);
+    //console.log("dates updated:Hello", dates);
 
   };
 

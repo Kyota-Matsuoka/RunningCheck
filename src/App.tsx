@@ -68,7 +68,7 @@ import viteLogo from '/vite.svg'
 ButtonやCheckSheetなどを呼びだしているこのAPPが親コンポーネント
 */
 import './App.css'
-import Button, { CheckSheet } from './Button'
+import  { CheckSheet } from './Button'
 import RunningCalendar from './RunningCalender'
 //<div>は箱     クラス名＝"クラス名"でcssにあるそのクラスの書式設定にする
 function App() {
